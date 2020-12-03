@@ -1,11 +1,10 @@
 const express = require("express")
 const path = require("path")
-const fetch = require("node-fetch")
 const app = express()
 const AWS = require("aws-sdk");
 const AWS_ACCESS_KEY=process.env.AWS_ACCESS_KEY
 const AWS_SECRET_KEY=process.env.AWS_SECRET_KEY
-const PORT = process.env.PORT
+const PORT = 3000 
 
 
 
