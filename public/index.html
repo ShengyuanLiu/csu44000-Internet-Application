@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AWS Movie Madness</title>
+    <title>AWS Movie Application</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 </head>
@@ -13,12 +13,12 @@
 <body>
     <div id="app">
         <h1>AWS Movie Application</h1>
-        <div>See a movie in here!</div>
+        <div>Check movie information in here!</div>
         <button v-on:click="Create">Create Table</button><br>
-        <button v-on:click="Query(year, title)">Query</button>
-        Enter Title: <input v-model="title"> Enter Year: <input v-model="year"><br> 
+        
+        Enter Title: <input v-model="title"> Enter Year: <input v-model="year"><button v-on:click="Query(year, title)">Query</button><br> 
         <button v-on:click="Destroy">Delete Table</button><br>
-    <table border="1">
+    <table border="2">
         <thead>
             <tr>
                 <th>Movie</th>
@@ -64,7 +64,7 @@
             let prom = fetch('/query/'+title+'/'+year, {method:'POST'})
             prom.then(response => response.json())
                 .then(response => {
-                    this.responseList = response.myList
+                    this.responseList = response.datalist
                 })
         }
 

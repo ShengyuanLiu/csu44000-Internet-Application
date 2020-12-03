@@ -91,7 +91,7 @@ app.post('/create', (req, res) => {
 app.post('/query/:title/:year', (req, res) => {
     console.log("Query time")
     var myArray = {
-        myList :[]
+        datalist :[]
     }
     var year = parseInt(req.params.year)
     var title = req.params.title
@@ -122,7 +122,7 @@ app.post('/query/:title/:year', (req, res) => {
                 var inputRate = item.rating
                 var movieRank = item.rank
                 var releaseDate = item.release
-                myArray.myList.push(
+                myArray.datalist.push(
                     {
                         Title: inputTitle,
                         Year : inputYear,
