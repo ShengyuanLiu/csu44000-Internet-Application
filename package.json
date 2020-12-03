@@ -1,25 +1,17 @@
 {
-  "name": "csu44000-assignment-2",
+  "name": "assignment-2",
   "version": "1.0.0",
-  "description": "A simple web application utilising Node.js, Vue.js, DynamoDB, AWS with a HTML client",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/teehanad/CSU44000-Assignment-2.git"
-  },
-  "author": "Adam Teehan",
+  "author": "darts",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/teehanad/CSU44000-Assignment-2/issues"
-  },
-  "homepage": "https://github.com/teehanad/CSU44000-Assignment-2#readme",
   "dependencies": {
-    "aws-sdk": "^2.568.0",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.0",
-    "path": "^0.12.7"
+    "aws-sdk": "^2.799.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
   }
 }
