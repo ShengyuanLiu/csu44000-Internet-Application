@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AWS Movie Madness</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>AWS Movie Application</h1>
+        <div>See a movie in here!</div>
+        <button v-on:click="Create">Create Table</button><br>
+        <button v-on:click="Query(year, title)">Query</button>
+        Enter Title: <input v-model="title"> Enter Year: <input v-model="year"><br> 
+        <button v-on:click="Destroy">Delete Table</button><br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>Year</th>
+                <th>Rating</th>
+                <th>Rank</th>
+                <th>Release Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in responseList">
+                <td v-for="item in row">
+                    {{item}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                title:'',
+                year:'',
+                responseList : [],
+            },
+            methods: {
+                Create: create,
+                Destroy: destroy,
+                Query: query
+            }
+        })
+
+        function create() {
+            let prom = fetch('/create', {method:'POST'})
+            prom.then(response => response.json())
+                .then(response => {
+                })
+        }
+
+        function query(year, title) {
+            let prom = fetch('/query/'+title+'/'+year, {method:'POST'})
+            prom.then(response => response.json())
+                .then(response => {
+                    this.responseList = response.myList
+                })
+        }
+
+        function destroy(){
+            let prom = fetch('/destroy', {method:'POST'})
+            prom.then(response => response.json())
+                .then(response => {
+                })
+        }
+
+
+    </script>
+</body>
+
+</html>
