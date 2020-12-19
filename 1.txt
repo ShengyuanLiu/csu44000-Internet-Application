@@ -1,0 +1,27 @@
+	AddShader(shaderProgramID, "VertexShaderAmbient.txt", GL_VERTEX_SHADER);
+	AddShader(shaderProgramID, "FragmentShaderAmbient.txt", GL_FRAGMENT_SHADER);
+
+	AddShader(shaderProgramID, "VertexShaderDiffuse.txt", GL_VERTEX_SHADER);
+	AddShader(shaderProgramID, "FragmentShaderDiffuse.txt", GL_FRAGMENT_SHADER);
+
+
+
+
+	AddShader(shaderProgramID, "VertexShaderSpecular.txt", GL_VERTEX_SHADER);
+	AddShader(shaderProgramID, "FragmentShaderSpecular.txt", GL_FRAGMENT_SHADER);
+
+
+   float ambientStrength1=0.1;
+   vec3 ambient1 =ambientStrength1 *ambient_light_color;
+    
+   vec3 norm1 = normalize(tnorm);
+   vec3 light_dir1 = normalize(   light_position2-vertex_inWorldSpace);
+   float diff1 = max (dot(norm1,light_dir1),0.0);
+   vec3 diffuse1 = diff1 *diffuse_light_color;
+
+   float specularStrength1=1;
+   view_dir1 = normalize(view_pos - vertex_inWorldSpace);
+   vec3 reflect_dir1 = normalize(reflect(light_dir1,tnorm));
+   float spec_dot1 = max(dot(view_dir1, reflect_dir1),0.0);
+   float spec1 = pow(spec_dot1,specular_coef1);
+   vec3 specular1 = spec1* specularStrength1* spec_light_color;

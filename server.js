@@ -4,7 +4,7 @@ const app = express()
 const AWS = require("aws-sdk");
 const AWS_ACCESS_KEY=process.env.AWS_ACCESS_KEY
 const AWS_SECRET_KEY=process.env.AWS_SECRET_KEY
-const PORT = 3000 
+const PORT = process.env.PORT
 
 
 
@@ -46,6 +46,10 @@ app.post('/create', (req, res) => {
             { AttributeName: "year", AttributeType: "N" },
             { AttributeName: "title", AttributeType: "S" }
         ],
+        ProvisionedThroughput: {
+            ReadCapacityUnits: 10,
+            WriteCapacityUnits: 10
+        },
         BillingMode: "PAY_PER_REQUEST"
     };
     dynamodb.createTable(params, function (err, data) {
@@ -141,7 +145,7 @@ app.post('/query/:title/:year', (req, res) => {
 
 
 app.post('/destroy', (req, res) => {
-    console.log("Destroying...");
+    console.log("Destroying... Please be patient.");
     var params = {
         TableName : "Movies",
     };
